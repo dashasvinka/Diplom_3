@@ -5,10 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Properties;
 
 @RunWith(Parameterized.class)
 public class RegistrationTests {
@@ -50,7 +47,6 @@ public class RegistrationTests {
     public void checkNegativeRegistration() throws InterruptedException {
         driver.get("https://stellarburgers.nomoreparties.site/register");
         RegistrationPage registrationPage = new RegistrationPage(driver);
-        PersonalAccountLoginPage personalAccountLoginPage = new PersonalAccountLoginPage(driver);
         String generateName = getAlphaNumericString(5);
         registrationPage.sendUserName(generateName);
         registrationPage.sendUserEmail(String.format("%s@gmail.com", generateName));

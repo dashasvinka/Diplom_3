@@ -76,7 +76,6 @@ public class SignInTests {
         driver.get("https://stellarburgers.nomoreparties.site/forgot-password");
         MainMenuPage mainMenuPage = new MainMenuPage(driver);
         PersonalAccountLoginPage personalAccountLoginPage = new PersonalAccountLoginPage(driver);
-        RegistrationPage registrationPage = new RegistrationPage(driver);
         RecoveryPasswordPage recoveryPasswordPage = new RecoveryPasswordPage(driver);
         recoveryPasswordPage.clickButtonSignInRecoveryPasswordPage();
         personalAccountLoginPage.sendFieldEmailLoginPage("khmelkovadaria@gmail.com");

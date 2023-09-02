@@ -5,8 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(Parameterized.class)
 public class ConstructionTests {
@@ -30,32 +30,35 @@ public class ConstructionTests {
                 {DriverType.Yandex}
         };
     }
-
     @Test
-    public void checkBun() throws InterruptedException {
+    public void checkBun() {
         driver.get("https://stellarburgers.nomoreparties.site/");
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         MainMenuPage mainMenuPage = new MainMenuPage(driver);
-        mainMenuPage.clickButtonFillingMainPage();
-        mainMenuPage.clickButtonBunMainPage();
-        Assert.assertTrue(mainMenuPage.isBunActive());
+        mainMenuPage.clickTabFiling();
+        Assert.assertFalse(mainMenuPage.isSelectedTabBun());
+        mainMenuPage.clickTabBun();
+        Assert.assertTrue(mainMenuPage.isSelectedTabBun());
     }
 
     @Test
-    public void checkSauces() throws InterruptedException {
+    public void checkSauces() {
         driver.get("https://stellarburgers.nomoreparties.site/");
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         MainMenuPage mainMenuPage = new MainMenuPage(driver);
-        mainMenuPage.clickButtonFillingMainPage();
-        mainMenuPage.clickButtonSaucesMainPage();
-        Assert.assertTrue(mainMenuPage.isSauceActive());
+        Assert.assertFalse(mainMenuPage.isSelectedTabSauce());
+        mainMenuPage.clickTabSauce();
+        Assert.assertTrue(mainMenuPage.isSelectedTabSauce());
     }
 
     @Test
-    public void checkFilling() throws InterruptedException {
+    public void checkFilling() {
         driver.get("https://stellarburgers.nomoreparties.site/");
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         MainMenuPage mainMenuPage = new MainMenuPage(driver);
-        mainMenuPage.clickButtonSaucesMainPage();
-        mainMenuPage.clickButtonFillingMainPage();
-        Assert.assertTrue(mainMenuPage.isFillingActive());
+        Assert.assertFalse(mainMenuPage.isSelectedTabFiling());
+        mainMenuPage.clickTabFiling();
+        Assert.assertTrue(mainMenuPage.isSelectedTabFiling());
     }
 
     @After
